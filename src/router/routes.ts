@@ -5,13 +5,15 @@ const routes: RouteConfig[] = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/AboutMe.vue') },
-      { path: 'aboutme', component: () => import('pages/AboutMe.vue') },
-      { path: 'education', component: () => import('pages/Education.vue') },
-      { path: 'skillandframework', component: () => import('pages/SkillAndFramework.vue') },
-      { path: 'experience', component: () => import('pages/Experience.vue') },
-      { path: 'demoapp', component: () => import('pages/DemoApp.vue') },
-      { path: 'contactme', component: () => import('pages/ContactMe.vue') },
+      { path: '', component: () => import('pages/Index.vue') },
+    ],
+  },
+
+  {
+    path: '/quoteapp',
+    component: () => import('layouts/QuoteAppLayout.vue'),
+    children: [
+      { path: '', component: () => import('src/pages/QuoteApp/Index.vue') },
     ],
   },
 

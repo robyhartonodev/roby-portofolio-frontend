@@ -1,118 +1,135 @@
 <template>
-  <q-page
-    padding
-    class="row frameworks-center justify-evenly"
-  >
-    <q-card class="fit">
-      <!-- Languages -->
-      <q-card-section class="text-center text-h3 bg-blue text-white">
-        Languages
-      </q-card-section>
+  <q-card class="fit">
+    <q-card-section class="text-h4 text-center">
+      {{ $t('skill.title') }}
+    </q-card-section>
 
-      <q-card-section>
-        <div class="row q-gutter-lg justify-center">
-          <div
-            class="col-md-3 col-xs-12"
-            v-for="item in languages"
-            :key="item.label"
+    <q-separator inset />
+
+    <q-card-section>
+      <div class="row">
+        <div class="col-md-3 col-xs-4">
+          <q-tabs
+            v-model="tab"
+            vertical
+            align="justify"
           >
-            <q-card class="q-ma-md">
-              <q-scroll-area style="height:400px;">
-                <q-card-section
-                  class="text-h4 text-white"
-                  :class="item.bgcolor"
+            <q-tab
+              name="language"
+              icon="fas fa-language"
+              :label="$t('skill.languages')"
+            />
+            <q-tab
+              name="framework"
+              icon="fas fa-cube"
+              :label="$t('skill.frameworks')"
+            />
+            <q-tab
+              name="miscellaneuous"
+              icon="fas fa-plus-square"
+              :label="$t('skill.miscellaneuouses')"
+            />
+          </q-tabs>
+        </div>
+        <div class="col-md-9 col-xs-8">
+          <q-tab-panels
+            v-model="tab"
+            animated
+            swipeable
+            vertical
+            transition-prev="jump-up"
+            transition-next="jump-down"
+          >
+            <q-tab-panel name="language">
+              <div class="row q-gutter-lg justify-center">
+                <div
+                  class="col-md-3 col-xs-12"
+                  v-for="item in languages"
+                  :key="item.label"
+                >
+                  <q-card class="q-ma-md">
+                    <q-card-section
+                      class="text-h4 text-white text-center"
+                      :class="item.bgcolor"
+                    >
+                      {{ item.label }}
+                    </q-card-section>
+
+                    <q-separator />
+
+                    <div class="text-center">
+                      <q-img
+                        class="animated zoomIn slower q-my-md"
+                        style="width:150px;height:150px;"
+                        :src="item.image"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </div>
+            </q-tab-panel>
+
+            <q-tab-panel name="framework">
+              <div class="row q-gutter-lg justify-center">
+                <div
+                  class="col-md-3 col-xs-12"
+                  v-for="item in frameworks"
+                  :key="item.label"
+                >
+                  <q-card class="q-ma-md">
+                    <q-card-section
+                      class="text-h4 text-white text-center"
+                      :class="item.bgcolor"
+                    >
+                      {{ item.label }}
+                    </q-card-section>
+
+                    <q-separator />
+
+                    <div class="text-center">
+                      <q-img
+                        class="animated zoomIn slower q-my-md"
+                        style="width:150px;height:150px;"
+                        :src="item.image"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </div>
+            </q-tab-panel>
+
+            <q-tab-panel name="miscellaneuous">
+              <div class="fit wrap row justify-center">
+                <q-chip
+                  v-for="item in miscellaneouses"
+                  :key="item.label"
+                  size="18px"
+                  :icon="item.icon"
+                  :color="item.color"
+                  text-color="white"
                 >
                   {{ item.label }}
-                </q-card-section>
-
-                <q-separator />
-
-                <div class="text-center">
-                  <q-img
-                    class="animated zoomIn slower q-my-md"
-                    style="width:100px;height:100px;"
-                    :src="item.image"
-                  />
-                </div>
-
-                <q-card-section class="text-justify">
-                  {{ item.description }}
-                </q-card-section>
-              </q-scroll-area>
-            </q-card>
-          </div>
+                </q-chip>
+              </div>
+            </q-tab-panel>
+          </q-tab-panels>
         </div>
-      </q-card-section>
-
-      <!-- Frameworks -->
-      <q-card-section class="text-center text-h3 bg-orange text-white">
-        Frameworks
-      </q-card-section>
-
-      <q-card-section>
-        <div class="row q-gutter-lg justify-center">
-          <div
-            class="col-md-3 col-xs-12"
-            v-for="item in frameworks"
-            :key="item.label"
-          >
-            <q-card class="q-ma-md">
-              <q-scroll-area style="height:400px;">
-                <q-card-section
-                  class="text-h4 text-white"
-                  :class="item.bgcolor"
-                >
-                  {{ item.label }}
-                </q-card-section>
-
-                <q-separator />
-
-                <div class="text-center">
-                  <q-img
-                    class="animated zoomIn slower q-my-md"
-                    style="width:100px;height:100px;"
-                    :src="item.image"
-                  />
-                </div>
-
-                <q-card-section class="text-justify">
-                  {{ item.description }}
-                </q-card-section>
-              </q-scroll-area>
-            </q-card>
-          </div>
-        </div>
-      </q-card-section>
-
-      <!-- Miscellaneous -->
-      <q-card-section class="text-center text-h3 bg-green text-white">
-        Miscellaneouses
-      </q-card-section>
-
-      <q-card-section>
-        <div class="fit wrap row justify-center">
-          <q-chip
-            v-for="item in miscellaneouses"
-            :key="item.label"
-            size="18px"
-            :icon="item.icon"
-            :color="item.color"
-            text-color="white"
-          >
-            {{ item.label }}
-          </q-chip>
-        </div>
-      </q-card-section>
-    </q-card>
-  </q-page>
+      </div>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api';
 
 export default defineComponent({
-  name: 'PageSkillAndFramework',
+  name: 'SkillList',
   setup() {
+    const tab = ref('language');
+    const splitterModel = ref(20);
+
+    const slide = ref('Javascript');
+
     const frameworks = ref([
       {
         label: 'Bootstrap',
@@ -141,13 +158,13 @@ export default defineComponent({
       {
         label: 'Spring Boot',
         description: "Spring Boot is Spring's convention-over-configuration solution for creating stand-alone, production-grade Spring-based Applications that you can just run. It is preconfigured with the Spring team's 'opionated view' of the best configuration and use of the Spring platform and third-party libraries so you can get started with minimum fuss. Most Spring Boot applications need very little Spring configuration.",
-        image: 'https://pbs.twimg.com/profile_images/1235868806079057921/fTL08u_H_400x400.png',
+        image: 'https://seeklogo.com/images/S/spring-logo-9A2BC78AAF-seeklogo.com.png',
         bgcolor: 'bg-green',
       },
       {
         label: 'Quasar',
         description: 'Quasar Framework (commonly referred to as Quasar; pronounced /ˈkweɪ.zɑːr/) is an open-source Vue.JS based framework for building apps, with a single codebase, and deploy it on the Web as a SPA, PWA, SSR, to a Mobile App, using Cordova for iOS & Android, and to a Desktop App, using Electron for Mac, Windows, and Linux.',
-        image: 'https://upload.wikimedia.org/wikipedia/en/2/29/Quasar_Logo.png',
+        image: 'https://cdn.quasar.dev/logo/svg/quasar-logo.svg ',
         bgcolor: 'bg-primary',
       },
     ]);
@@ -196,7 +213,14 @@ export default defineComponent({
       { label: 'NGINX', icon: 'fas fa-server', color: 'green' },
     ]);
 
-    return { frameworks, languages, miscellaneouses };
+    return {
+      tab,
+      splitterModel,
+      slide,
+      frameworks,
+      languages,
+      miscellaneouses,
+    };
   },
 });
 </script>

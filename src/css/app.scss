@@ -4,6 +4,15 @@
   src: url(./fonts/OpenSans-Regular.ttf);
 }
 
+@font-face {
+  font-family: ptserif;
+  src: url(./fonts/PTSerif-Regular.ttf);
+}
+
 .my-font {
   font-family: 'opensans';
+}
+
+.serif-font {
+  font-family: ptserif;
 }
